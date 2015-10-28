@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/', function() {
+	$id = Request::get('id',-1);
+	$array = DB::select('select * from PRODUCTO WHERE id = ?;',[$id]);
+	$array = json_encode($array);
+
+	return view('welcome',compact('array'));
+});
